@@ -1,5 +1,6 @@
 "use client";
 import Button from "@/app/components/Button";
+import ProductImage from "@/app/components/product/ProductImage";
 import SetColor from "@/app/components/product/SetColor";
 import SetQuantity from "@/app/components/product/SetQuantity";
 import { Rating } from "@mui/material";
@@ -41,8 +42,6 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
     price: product.price,
   });
 
-  console.log(cartProduct);
-
   const productRating =
     product.reviews.reduce((acc: number, item: any) => item.rating + acc, 0) /
     product.reviews.length;
@@ -77,7 +76,11 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <div>image</div>
+      <ProductImage
+        cartProduct={cartProduct}
+        product={product}
+        handleColorSelect={handleColorSelect}
+      />
       <div>
         <h2 className="text-3xl font-medium text-slate-700">{product?.name}</h2>
 
